@@ -11,12 +11,13 @@ var express = require("express");
 const app = require("../app");
 var UserController = require("../controller/user");
 var md_auth = require("../middlewares/authenticated")
+var cors = require("../middlewares/cors");
 
 var api = express.Router();
 
 api.post("/user", UserController.saveUser);
 api.get("/users", md_auth.ensureAuth, UserController.getUsers);
-api.post("/login", UserController.loginUser);
+api.post("/login", cors.corsHeaders, UserController.loginUser);
 api.delete("/user/:id", md_auth.ensureAuth, UserController.deleteUser);
 api.get("/user/:id", md_auth.ensureAuth, UserController.getUser);
 
