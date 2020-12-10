@@ -28,9 +28,11 @@ $(function(){
             dataType: "JSON",
             success: function(response){
                 alert(response.message);
+                localStorage.setItem("TOKEN_SVLSM", response.token);
+                window.location.replace("index.html");
             },
             error: function(response){
-                console.log(response);
+                alert(response.responseJSON.message);
             }
         });
     }
