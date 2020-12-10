@@ -7,8 +7,8 @@
 
 "use strict"
 
-const mongoose = require("mongoose")
-var app = require("./app")
+const mongoose = require("mongoose");
+var app = require("./app");
 var port = process.env.PORT || 8000;
 
 mongoose.connect("mongodb://localhost/svlsm", {useNewUrlParser:true, useUnifiedTopology: true}, function(err, db){

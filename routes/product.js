@@ -8,7 +8,6 @@
 "use strict"
 
 var express = require("express");
-const app = require("../app");
 var ProductController = require("../controller/products");
 var md_auth = require("../middlewares/authenticated");
 
@@ -19,3 +18,5 @@ api.get("/products", md_auth.ensureAuth, ProductController.getProducts);
 api.get("/product/:id", md_auth.ensureAuth, ProductController.getProduct);
 api.delete("/product/:id", md_auth.ensureAuth, ProductController.deleteProduct);
 api.put("/product/:id", md_auth.ensureAuth, ProductController.putProduct);
+
+module.exports = api;
