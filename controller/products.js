@@ -50,6 +50,31 @@ function saveProduct(req, res){
     }
 }
 
+function getProducts(req, res){
+    Product.find({}).exec(function(err, result){
+        if(err){
+            res.status(500).send({
+				code: 500,
+                message: "Error en el servidor, favor de intentarlo mas tarde."
+            });
+        }else{
+            if(result == "{}"){
+                res.status(404).send({
+					code: 404,
+					message: "No se encontraron datos en el servidor."
+				});
+            }else{
+                res.status(200).send({
+					code: 200,
+					message: "Busqueda exitosa.",
+					data: result
+				});
+            }
+        }
+    });
+}
+
 module.exports = {
     saveProduct,
+    getProducts,
 }
