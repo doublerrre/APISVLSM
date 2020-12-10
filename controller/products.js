@@ -124,9 +124,37 @@ function deleteProduct(req, res){
     });
 }
 
+function putProduct(req, res){
+    var productId = req.params.id;
+    var update = req.body;
+
+    Product.findByIdAndUpdate(productId, update, (err, result) => {
+        if(err){
+            res.status(500).send({
+				code: 500,
+				message: "Error en el servidor, vuelva a intentarlo mas tarde."
+			});
+        }else{
+            if(!result){
+                res.status(404).send({
+					code: 404,
+					message: "No se encuentra el producto en la base de datos."
+				});
+            }else{
+                res.status(200).send({
+					code: 200,
+					message: "Producto actualizado correctamente.",
+					data: result,
+				});
+            }
+        }
+    });
+}
+
 module.exports = {
     saveProduct,
     getProducts,
     getProduct,
     deleteProduct,
+    putProduct,
 }

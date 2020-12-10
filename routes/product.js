@@ -17,3 +17,5 @@ var api = express.Router();
 api.post("/product", md_auth.ensureAuth, ProductController.saveProduct);
 api.get("/products", md_auth.ensureAuth, ProductController.getProducts);
 api.get("/product/:id", md_auth.ensureAuth, ProductController.getProduct);
+api.delete("/product/:id", md_auth.ensureAuth, ProductController.deleteProduct);
+api.put("/product/:id", md_auth.ensureAuth, ProductController.putProduct);
