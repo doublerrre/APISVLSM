@@ -38,10 +38,17 @@ function saveUser(req, res){
 			if(user.nombre != null && user.email != null && user.username !=null){
 				user.save((err, data) =>{
 					if(err){
-						res.status(500).send({
-							code: 500,
-							message: "Error interno en el servidor, favor de intentarlo mas tarde."
-						});
+						if(err.code == 11000){
+							res.status(500).send({
+								code: 500,
+								message: "Error el correo o el usuario ya esta registrado en la base de datos."
+							});
+						}else{
+							res.status(500).send({
+								code: 500,
+								message: "Error interno en el servidor, favor de intentarlo mas tarde."
+							});
+						}
 					}else{
 						if(!data){
 							res.status(500).send({

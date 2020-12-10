@@ -8,7 +8,6 @@
 "use strict"
 
 var Product = require("../models/products");
-const user = require("../models/user");
 
 function saveProduct(req, res){
     var params = req.body;
@@ -17,11 +16,11 @@ function saveProduct(req, res){
     product.nombre = params.nombre;
     product.existencias = params.existencias;
     product.precio = params.precio;
-    product.user = params.user;
+    product.user = req.user.sub;
     product.category = params.category;
 
     if(product.nombre != null && product.existencias != null && product.precio != null && product.user != null && product.category != null){
-        user.save((err, data) => {
+        product.save((err, data) => {
             if(err){
                 res.status(500).send({
                     code: 500,
@@ -51,7 +50,7 @@ function saveProduct(req, res){
 }
 
 function getProducts(req, res){
-    Product.find({}).exec(function(err, result){
+    Product.find({}).populate("user").populate("category").exec(function(err, result){
         if(err){
             res.status(500).send({
 				code: 500,
@@ -76,24 +75,24 @@ function getProducts(req, res){
 
 function getProduct(req, res){
     var productId = req.params.id;
-    Product.findById(productId, (err, result) => {
-        if(err){
-            res.status(500).send({
-				code: 500,
-				message: "Error en el servidor, vuelva a intentarlo mas tarde."
-			});
-        }else{
-            if(!result){
-                res.status(404).send({
-					code: 404,
-					message: "No existe el producto en la base de datos."
-				});
-            }else{
-                res.status(200).send({
-					code: 200,
-					message: "Busqueda exitosa.",
-					data: result
-				});
+    Product.findById(productId).populate("user").populate("category").exec((err, userFound) => {
+        if (err) {
+            return res.status(500).send({
+                code: 500,
+                message: 'No se encontró el producto',
+            });
+        } else {
+            if (!userFound) {
+                return res.status(500).send({
+                    code: 500,
+                    message: 'Hubo un error al buscar el producto',
+                });
+            } else {
+                return res.status(200).send({
+                    code: 200,
+                    message: 'consulta exitosa',
+                    data: userFound,
+                });
             }
         }
     });
@@ -150,6 +149,7 @@ function putProduct(req, res){
         }
     });
 }
+
 
 module.exports = {
     saveProduct,
