@@ -7,6 +7,10 @@
 
 'use strict'
 
+if(localStorage.getItem("TOKEN_SVLSM")){
+    window.location.replace("index.html");
+}
+
 $(function(){
     console.log("jQuery is working...");
     var url = "http://localhost:8000/api/";
@@ -35,5 +39,10 @@ $(function(){
                 alert(response.responseJSON.message);
             }
         });
+    }
+
+    function logout(){
+        localStorage.removeItem("TOKEN_SVLSM");
+        window.location.replace("login.html");
     }
 });
