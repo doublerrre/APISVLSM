@@ -113,7 +113,7 @@ function putCategory(req, res){
             }else{
                 res.status(200).send({
 					code: 200,
-					message: "Usuario actualizado correctamente.",
+					message: "Categoria actualizada correctamente.",
 					data: result,
 				});
             }

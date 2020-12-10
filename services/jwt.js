@@ -4,9 +4,6 @@
 	║ (●) ♫	Area Code F2
 	╚═══╝♪♪
  */
-
-const { use } = require("../app");
-
 "use strict"
 
 var jwt = require("jwt-simple");
