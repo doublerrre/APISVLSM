@@ -1,43 +1,37 @@
+/* 	 
+	╔═══╗ ♪
+	║███║ ♫ API Rest SVLSM
+	║ (●) ♫	Area Code F2
+	╚═══╝♪♪
+*/
+
 'use strict'
 
-var app = angular.module('Login',[]);
-var server = 'http://localhost:8000/api'
-
-
-app.controller('CtrlLogin', function($scope,$http){
-
-    $scope.email = '';
-    $scope.password = '';
-
-    $scope.login = function(email, password){
-
-        var data={
-            email: email,
-            password: password
-        };
-        $http.post(server+'/login',JSON.stringify(data))
-        .then(function(response){
-          console.log(response.data);
-          window.location.replace('index.html');
-        },function error(){
-            //console.log(response.data);
-            alert("Datos incorrectos")
-        })
-    }
-
-    $scope.register = function(name, email, password){
-        var data={
-            email: email,
-            password: password,
-            name: name
-        };
-        $http.post(server+'/user',JSON.stringify(data))
-        .then(function(response){
-          console.log(response.data);
-          window.location.replace('login.html');
-        },function error(){
-            //console.log(response.data);
-            alert("No se pudo crear la cuenta")
-        })
+$(function(){
+    console.log("jQuery is working...");
+    var url = "http://localhost:8000/api/";
+    //Eventos
+    $(document).on("click", "#login_session", function(e){
+        e.preventDefault();
+        const postData = {
+            username: $("#username").val(),
+            password: $("#password").val()
+        }
+        login(postData);
+    });
+    //Funciones
+    function login(postData){
+        $.ajax({
+            url: url + "login",
+            type: "POST",
+            data: postData,
+            dataType: "JSON",
+            success: function(response){
+                alert(response.message);
+            },
+            error: function(response){
+                console.log(response);
+            }
+        });
     }
 });
