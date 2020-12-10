@@ -3,13 +3,12 @@
 	║███║ ♫ API Rest SVLSM
 	║ (●) ♫	Area Code F2
 	╚═══╝♪♪
- */
+*/
 
 'use strict'
 
 var User = require("../models/user");
 var bcrypt = require("bcrypt-nodejs");
-const { use } = require("../app");
 var jwt = require("../services/jwt")
 
 

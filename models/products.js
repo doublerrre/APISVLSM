@@ -14,9 +14,9 @@ var ProductSchema = Schema({
     nombre: String,
     existencias: String, 
     precio: String,
-    updated: {type: Date, default: Date.now},
     user: {type: Schema.ObjectId, ref: "User"},
-    category: {type: Schema.ObjectId, ref: "Category"}
+    category: {type: Schema.ObjectId, ref: "Category"},
+    updated: {type: Date, default: Date.now}
 });
 
 module.exports = mongoose.model("Products", ProductSchema);
