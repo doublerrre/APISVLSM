@@ -38,17 +38,37 @@
                             </div>
                             <form class="user">
                                 <div class="form-group">
-                                        <input type="text" ng-model="name" class="form-control form-control-user" id="exampleFirstName"
+                                        <input type="text" ng-model="nombre" class="form-control form-control-user" id="exampleFirstName"
                                             placeholder="Escribe tu nombre">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" ng-model="ap_pat" class="form-control form-control-user" id="exampleFirstName"
+                                        placeholder="Escribe tu apellido paterno">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" ng-model="ap_mat" class="form-control form-control-user" id="exampleFirstName"
+                                        placeholder="Escribe tu apellido paterno">
                                 </div>
                                 <div class="form-group">
                                     <input type="email" ng-model="email" class="form-control form-control-user" id="exampleInputEmail"
                                         placeholder="Correo electronico">
                                 </div>
                                 <div class="form-group">
+                                    <input type="text" ng-model="username" class="form-control form-control-user" id="exampleFirstName"
+                                        placeholder="Escribe tu nombre de usuario">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" ng-model="direccion" class="form-control form-control-user" id="exampleFirstName"
+                                        placeholder="Escribe tu direccion">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" ng-model="telefono" class="form-control form-control-user" id="exampleFirstName"
+                                        placeholder="Escribe tu telefono">
+                                </div>
+                                <div class="form-group">
                                         <input type="password" ng-model="password" class="form-control form-control-user"
                                             id="exampleInputPassword" placeholder="Contraseña">
-                                <button ng-click="register(name, email, password)" class="btn btn-primary btn-user btn-block">
+                                <button ng-click="register(nombre, ap_pat, ap_mat, email, username, direccion, telefono, password)" class="btn btn-primary btn-user btn-block">
                                     Crear Cuenta
                                 </button>
                             </form>

@@ -42,22 +42,21 @@
                                     </div>
                                     <form class="user">
                                         <div class="form-group">
-                                            <input type="email" ng-model="email" class="form-control form-control-user"
+                                            <input type="email" ng-model="nombre" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Escribe tu correo...">
+                                                placeholder="Escribe tu nombre de usuario...">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" ng-model="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Escribe tu contraña...">
+                                                id="exampleInputPassword" placeholder="Escribe tu contraseña...">
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Remember
-                                                    Me</label>
+                                                <label class="custom-control-label" for="customCheck">Recuerdame</label>
                                             </div>
                                         </div>
-                                        <button ng-click="login(email,password)" class="btn btn-primary btn-user btn-block">
+                                        <button ng-click="login(nombre,password)" class="btn btn-primary btn-user btn-block">
                                             Iniciar Sesion
                                         </button>
                                     </form>
