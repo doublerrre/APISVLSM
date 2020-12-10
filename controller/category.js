@@ -69,6 +69,61 @@ function getCategorys(req, res){
     });
 }
 
+function deleteCategory(req, res){
+    var categoryId = req.params.id;
+    Category.findByIdAndDelete(categoryId, (err, result) => {
+        if(err){
+            res.status(500).send({
+				code: 500,
+				message: 'Error en el servidor, favor de intentarlo mas tarde.',
+			});
+        }else{
+            if(!result){
+                res.status(404).send({
+					code: 404, 
+					message: "Este id no se encuentra en la base de datos."
+				});
+            }else{
+                res.status(200).send({
+					code: 200, 
+					message: "Categoria eliminada correctamente.",
+					data: result
+				});
+            }
+        }
+    });
+}
+
+function putCategory(req, res){
+    var categoryId = req.params.id;
+    var update = req.body;
+
+    Category.findByIdAndUpdate(categoryId, update, (err, result) => {
+        if(err){
+            res.status(500).send({
+				code: 500,
+				message: "Error en el servidor, vuelva a intentarlo mas tarde."
+			});
+        }else{
+            if(!result){
+                res.status(404).send({
+					code: 404,
+					message: "No se encuentra el usuario en la base de datos."
+				});
+            }else{
+                res.status(200).send({
+					code: 200,
+					message: "Usuario actualizado correctamente.",
+					data: result,
+				});
+            }
+        }
+    });
+}
+
 module.exports = {
     saveCategory,
+    getCategorys,
+    deleteCategory,
+    putCategory,
 }

@@ -26,10 +26,12 @@ app.use((req, res, next) => {
 //Cargar rutas
 var user_routes = require("./routes/user");
 var product_routes = require("./routes/product");
+var category_routes = require("./routes/category");
 
 //Definir una ruta base
 app.use("/api", user_routes);
 app.use("/api", product_routes);
+app.use("/api", category_routes);
 
 //Ruta Home
 app.get("/", function(req, res){
