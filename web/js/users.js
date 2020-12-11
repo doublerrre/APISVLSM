@@ -54,7 +54,11 @@ $(function(){
 		});
 	}
 
+	deleteUser("#dataTable", table);
+	getData("#dataTable", table);
+
 	function cleanInputs(){
+		//Save inputs
 		$("#nombre").val("");
 		$("#ap_pat").val("");
 		$("#ap_mat").val("");
@@ -63,12 +67,15 @@ $(function(){
 		$("#direccion").val("");
 		$("#telefono").val("");
 		$("#password").val("");
+
+		//Edit Inputs
 	}
 
-	deleteUser("#dataTable", table);
-
-	function getData(){
-
+	function getData(tbody, table){
+		$(tbody).on("click", ".getUser", function(){
+			var data = table.row($(this).parents("tr")).data();
+			//Continuar con la edicion
+		});
 	}
 
 	function deleteUser(tbody, table){

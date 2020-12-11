@@ -290,6 +290,58 @@
             </div>
         </div>
 
+        <!-- Editar usuarios-->
+        <div class="modal fade" id="modal_editar_usuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Crear un nuevo usuario?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <form class="user">
+                        <div class="form-group">
+                            <input type="text" id="Editnombre" class="form-control form-control-user"
+                                placeholder="Escribe tu nombre">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="Editap_pat" class="form-control form-control-user" id="exampleFirstName"
+                                placeholder="Escribe tu apellido paterno">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="Editap_mat" class="form-control form-control-user"
+                                placeholder="Escribe tu apellido paterno">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="Editemail" class="form-control form-control-user"
+                                placeholder="Correo electronico">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="Editusername" class="form-control form-control-user"
+                                placeholder="Escribe tu nombre de usuario">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="Editdireccion" class="form-control form-control-user"
+                                placeholder="Escribe tu direccion">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="Edittelefono" class="form-control form-control-user"
+                                placeholder="Escribe tu telefono">
+                        </div>
+                        <div class="form-group">
+                            <button id="save_User" class="btn btn-primary btn-user btn-block">
+                                Crear Cuenta
+                            </button>
+                    </form>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Bootstrap core JavaScript-->
         <script src="vendor/jquery/jquery.min.js"></script>
         <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
