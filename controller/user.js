@@ -192,10 +192,17 @@ function putUser(req, res){
 
 	User.findByIdAndUpdate(userId, update, (err, result) => {
 		if(err){
-			res.status(500).send({
-				code: 500,
-				message: "Error en el servidor, vuelva a intentarlo mas tarde."
-			});
+			if(err.code == 11000){
+				res.status(500).send({
+					code: 500,
+					message: "Error el correo o el usuario ya existe en la base de datos."
+				});
+			}else{
+				res.status(500).send({
+					code: 500,
+					message: "Error en el servidor, vuelva a intentarlo mas tarde."
+				});
+			}
 		}else{
 			if(!result){
 				res.status(404).send({
