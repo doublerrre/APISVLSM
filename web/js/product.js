@@ -28,6 +28,7 @@ $(function(){
                 Authorization: token,
             },
             success: function(response){
+                console.log(response);
                 let productos = JSON.parse(JSON.stringify(response.data));
                 let plantilla_cards = "";
 
