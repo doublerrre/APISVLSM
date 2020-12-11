@@ -48,7 +48,7 @@ $(function(){
 				{"data":"username"},
 				{"data":"direccion"},
 				{"data":"telefono"},
-				{"defaultContent":"<button type='button' class='getUser btn btn-success'><i class='fas fa-user-edit'></i></button><button type='button' class='deleteUser btn btn-danger'><i class='fas fa-ban'></i></button>"}
+				{"defaultContent":"<button data-bs-toggle='modal' data-bs-target=#modal_editar_usuario' type='button' class='getUser btn btn-success'><i class='fas fa-user-edit'></i></button><button type='button' class='deleteUser btn btn-danger'><i class='fas fa-ban'></i></button>"}
 			],
 			"iDisplayLength": 5,
 		});
@@ -74,7 +74,7 @@ $(function(){
 	function getData(tbody, table){
 		$(tbody).on("click", ".getUser", function(){
 			var data = table.row($(this).parents("tr")).data();
-			//Continuar con la edicion
+			
 		});
 	}
 
