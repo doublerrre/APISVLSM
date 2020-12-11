@@ -150,11 +150,35 @@ function putProduct(req, res){
     });
 }
 
-
+function getProductByUser(req, res){
+    Product.find({user: {$eq: req.params.id}}).exec((err, data) => {
+        if (err) {
+            return res.status(500).send({
+                code: 500,
+                message: 'No se encontró el producto',
+            });
+        } else {
+            if (!data) {
+                return res.status(500).send({
+                    code: 500,
+                    message: 'Hubo un error al buscar el producto',
+                });
+            } else {
+                return res.status(200).send({
+                    code: 200,
+                    message: 'consulta exitosa',
+                    data: data,
+                });
+            }
+        }
+    });
+}
+ 
 module.exports = {
     saveProduct,
     getProducts,
     getProduct,
     deleteProduct,
     putProduct,
+    getProductByUser,
 }
