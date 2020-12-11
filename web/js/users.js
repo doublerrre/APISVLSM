@@ -47,6 +47,9 @@ $(function(){
     //Funciones
 	function tabla(){
         table = $("#dataTable").DataTable({
+			"language": {
+				"url": "http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json",
+			},
 			"ajax": {
 				"method": "GET",
 				"dataType": "JSON",

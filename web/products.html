@@ -19,7 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-    <script src="js/logout.js"></script>
+    <script src="./js/logout.js"></script>
 
 </head>
 
@@ -64,16 +64,6 @@
                     <span>Tus articulos en venta</span></a>
             </li>
 
-            <div class="sidebar-heading">
-                Parte administrativa.
-            </div>
-
-            <li class="nav-item">
-                <a class="nav-link" href="usuarios.html">
-                    <i class="fas fa-user"></i>
-                    <span>Usuarios del sistema.</span></a>
-            </li>
-
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -98,6 +88,20 @@
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
+
+                    <!-- Topbar Search -->
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Busca..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -139,9 +143,13 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="profile.html">
+                                <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Ver perfil
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Configuraciones
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -158,25 +166,14 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Pagina principal</h1>
                     </div>
 
-                    <div class="card shadow mb-4">
-                        <!-- Card Header - Accordion -->
-                        <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse"
-                            role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                            <h6 class="m-0 font-weight-bold text-primary">Bienvenido de vuelta...</h6>
-                        </a>
-                        <!-- Card Content - Collapse -->
-                        <div class="collapse show" id="collapseCardExample">
-                            <div class="card-body">
-                                Te extrañamos, es bueno tenerte de vuelta. <strong>Trabajamos para brindarte una buena experiencia.</strong>
-                            </div>
-                        </div>
+                    <div id="card_products" class="row">
+                        
                     </div>
                     <!-- /.container-fluid -->
 
@@ -208,7 +205,7 @@
                     <div class="modal-body">Estas seguro que quieres cerrar sesion?</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                        <button class="btn btn-primary" onclick="logout()">Cerrar sesion</button>
+                        <a class="btn btn-primary" href="login.html">Cerrar sesion</a>
                     </div>
                 </div>
             </div>
@@ -224,6 +221,12 @@
         <!-- Custom scripts for all pages-->
         <script src="js/sb-admin-2.min.js"></script>
 
+        <!-- Page level plugins -->
+        <script src="vendor/chart.js/Chart.min.js"></script>
+
+        <!-- Page level custom scripts -->
+
+        <script src="./js/product.js"></script>
 </body>
 
 </html>
