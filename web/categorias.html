@@ -52,7 +52,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="products.html">
+                <a class="nav-link" href="charts.html">
                     <i class="fas fa-users"></i>
                     <span>Articulos en venta</span></a>
             </li>
@@ -62,16 +62,6 @@
                 <a class="nav-link" href="charts.html">
                     <i class="fas fa-user"></i>
                     <span>Tus articulos en venta</span></a>
-            </li>
-
-            <div class="sidebar-heading">
-                Parte administrativa.
-            </div>
-
-            <li class="nav-item">
-                <a class="nav-link" href="usuarios.html">
-                    <i class="fas fa-user"></i>
-                    <span>Usuarios del sistema.</span></a>
             </li>
 
             <!-- Divider -->
@@ -139,9 +129,13 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="profile.html">
+                                <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Ver perfil
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Configuraciones
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -158,23 +152,40 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Pagina principal</h1>
                     </div>
 
                     <div class="card shadow mb-4">
-                        <!-- Card Header - Accordion -->
-                        <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse"
-                            role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                            <h6 class="m-0 font-weight-bold text-primary">Bienvenido de vuelta...</h6>
-                        </a>
-                        <!-- Card Content - Collapse -->
-                        <div class="collapse show" id="collapseCardExample">
-                            <div class="card-body">
-                                Te extrañamos, es bueno tenerte de vuelta. <strong>Trabajamos para brindarte una buena experiencia.</strong>
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Usuarios</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table class="table table-bordered dataTable" id="dataTable" width="100%"
+                                                cellspacing="0" role="grid" aria-describedby="dataTable_info"
+                                                style="width: 100%;">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Nombre</th>
+                                                        <th>Acciones</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>Nombre</th>
+                                                        <th>Acciones</th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -208,11 +219,72 @@
                     <div class="modal-body">Estas seguro que quieres cerrar sesion?</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                        <button class="btn btn-primary" onclick="logout()">Cerrar sesion</button>
+                        <a class="btn btn-primary" href="login.html">Cerrar sesion</a>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- Crear nueva categoria-->
+        <div class="modal fade" id="modal_crear_categoria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Crear una nueva categoria.</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <form class="user">
+                        <div class="form-group">
+                            <input type="text" id="nombre" class="form-control form-control-user"
+                                placeholder="Escribe tu nombre">
+                        </div>
+                        <div class="form-group">
+                            <button id="saveCategory" class="btn btn-primary btn-user btn-block">
+                                Crear Categoria.
+                            </button>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modal_editar_categoria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Editar categoria</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <form class="user">
+                        <div class="form-group">
+                            <input type="text" id="editnombre" class="form-control form-control-user"
+                                placeholder="Escribe tu nombre">
+                                <input type="hidden" id="_id">
+                        </div>
+                        <div class="form-group">
+                            <button id="editCategory" class="btn btn-primary btn-user btn-block">
+                                Editar Categoria.
+                            </button>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar.</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
 
         <!-- Bootstrap core JavaScript-->
         <script src="vendor/jquery/jquery.min.js"></script>
@@ -224,6 +296,21 @@
         <!-- Custom scripts for all pages-->
         <script src="js/sb-admin-2.min.js"></script>
 
-</body>
+        <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+        <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+        <script type="text/javascript">
+            const boton = document.createElement("button");
+            boton.innerHTML = "<i class='fa fa-plus fa-2x'></i>";
+            boton.setAttribute("data-toggle", "modal");
+            boton.setAttribute("data-target", "#modal_crear_categoria");
+            boton.className = "d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+            boton.style = "bottom:50px;right:50px;position:fixed;z-index:9999;"
+            document.body.appendChild(boton);
+        </script>
+
+        <script src="js/category.js"></script>
+
+    </body>
 
 </html>
