@@ -27,7 +27,22 @@ $(function(){
             password: $("#password").val(),
         }
         saveUser(postData);
-    });
+	});
+	
+	$(document).on("click", "#editUser", function(e){
+		e.preventDefault();
+		var _id = $("#_id").val();
+		const putData = {
+			nombre: $("#editnombre").val(),
+			ap_pat: $("#editap_pat").val(),
+			ap_mat: $("#editap_mat").val(),
+			email: $("#editemail").val(),
+			username: $("#editusername").val(),
+			direccion: $("#editdireccion").val(),
+			telefono: $("#edittelefono").val(),
+		}
+		putUser(_id, putData);
+	})
 	
     //Funciones
 	function tabla(){
@@ -48,7 +63,7 @@ $(function(){
 				{"data":"username"},
 				{"data":"direccion"},
 				{"data":"telefono"},
-				{"defaultContent":"<button data-bs-toggle='modal' data-bs-target=#modal_editar_usuario' type='button' class='getUser btn btn-success'><i class='fas fa-user-edit'></i></button><button type='button' class='deleteUser btn btn-danger'><i class='fas fa-ban'></i></button>"}
+				{"defaultContent":"<button type='button' class='getUser btn btn-success'><i class='fas fa-user-edit'></i></button><button type='button' class='deleteUser btn btn-danger'><i class='fas fa-ban'></i></button>"}
 			],
 			"iDisplayLength": 5,
 		});
@@ -67,14 +82,20 @@ $(function(){
 		$("#direccion").val("");
 		$("#telefono").val("");
 		$("#password").val("");
-
-		//Edit Inputs
 	}
 
 	function getData(tbody, table){
 		$(tbody).on("click", ".getUser", function(){
 			var data = table.row($(this).parents("tr")).data();
-			
+			$("#_id").val(data._id);
+			$("#editnombre").val(data.nombre);
+			$("#editap_pat").val(data.ap_pat);
+			$("#editap_mat").val(data.ap_mat);
+			$("#editemail").val(data.email);
+			$("#editusername").val(data.username);
+			$("#editdireccion").val(data.direccion);
+			$("#edittelefono").val(data.telefono);
+			$("#modal_editar_usuario").modal("show");
 		});
 	}
 
@@ -104,7 +125,7 @@ $(function(){
 	function saveUser(postData){
         $.ajax({
             url: url + "user",
-            type: "POST",
+            method: "POST",
             data: postData,
             dataType: "JSON",
             success: function(response){
@@ -118,5 +139,26 @@ $(function(){
                 alert(response.responseJSON.message);
             }
         });
-    }
+	}
+	
+	function putUser(_id, putData){
+		$.ajax({
+			method: "PUT",
+			dataType: "JSON",
+			url: url + "user/" + _id,
+			data: putData,
+			headers: {
+				Authorization: token,
+			},
+			success: function(response){
+				alert(response.message);
+				$("#modal_editar_usuario").modal('hide');
+                table.destroy();
+				tabla();
+			},
+			error: function(response){
+				alert(response.responseJSON.message);
+			}
+		});
+	}
 });

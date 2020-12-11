@@ -13,8 +13,8 @@ var secret = "84fdb78f421faebf3cbef2cfede04dfb5183e32641439e835a4408e0224a55d0"
 
 exports.ensureAuth = function(req, res, next){
     if(!req.headers.authorization){
-        return res.status(403).send({
-            code: 403,
+        return res.status(500).send({
+            code: 500,
             message: "No tienes acceso, contacta a un administrador.",
         });
     }
@@ -22,14 +22,14 @@ exports.ensureAuth = function(req, res, next){
     try{
         var payload = jwt.decode(token, secret);
         if(payload.exp <= moment().unix()){
-            res.status(403).send({
-                code: 403,
+            res.status(500).send({
+                code: 500,
                 message: "El token expiro"
             });
         }
     }catch(ex){
-        return res.status(404).send({
-            code: 404,
+        return res.status(500).send({
+            code: 500,
             message: 'El token no es valido'
         });
     }
