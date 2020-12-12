@@ -11,6 +11,7 @@ var Product = require("../models/products");
 
 function saveProduct(req, res){
     var params = req.body;
+    console.log(req.body, req.user.sub);
     var product = new Product();
 
     product.nombre = params.nombre;
@@ -42,7 +43,7 @@ function saveProduct(req, res){
             }
         });
     }else{
-        res.status(400).send({
+        res.status(500).send({
             code: 400,
             message: "Todos los campos son requeridos."
         });
@@ -151,11 +152,14 @@ function putProduct(req, res){
 }
 
 function getProductByUser(req, res){
-    Product.find({user: {$eq: req.params.id}}).exec((err, data) => {
+    var userId = req.user.sub;
+    console.log(userId);
+    Product.find({user: {$eq: userId}}).exec((err, data) => {
         if (err) {
             return res.status(500).send({
                 code: 500,
                 message: 'No se encontró el producto',
+                id: err,
             });
         } else {
             if (!data) {
@@ -173,7 +177,7 @@ function getProductByUser(req, res){
         }
     });
 }
- 
+
 module.exports = {
     saveProduct,
     getProducts,

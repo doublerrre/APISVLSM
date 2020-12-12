@@ -75,18 +75,6 @@ $(function(){
 	deleteUser("#dataTable", table);
 	getData("#dataTable", table);
 
-	function cleanInputs(){
-		//Save inputs
-		$("#nombre").val("");
-		$("#ap_pat").val("");
-		$("#ap_mat").val("");
-		$("#email").val("");
-		$("#username").val("");
-		$("#direccion").val("");
-		$("#telefono").val("");
-		$("#password").val("");
-	}
-
 	function getData(tbody, table){
 		$(tbody).on("click", ".getUser", function(){
 			var data = table.row($(this).parents("tr")).data();
@@ -115,8 +103,7 @@ $(function(){
 				},
 				success: function(response){
 					alert(response.message);
-					table.destroy();
-					tabla();
+					location.reload();
 				},
 				error: function(response){
 					alert(response.ResponseJSON.message);
@@ -134,9 +121,7 @@ $(function(){
             success: function(response){
 				alert(response.message);
 				$("#modal_crear_usuario").modal('hide');
-                table.destroy();
-				tabla();
-				cleanInputs();
+                location.reload();
             },
             error: function(response){
                 alert(response.responseJSON.message);
@@ -156,8 +141,7 @@ $(function(){
 			success: function(response){
 				alert(response.message);
 				$("#modal_editar_usuario").modal('hide');
-                table.destroy();
-				tabla();
+                location.reload();
 			},
 			error: function(response){
 				alert(response.responseJSON.message);
