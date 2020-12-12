@@ -12,7 +12,6 @@ if(localStorage.getItem("TOKEN_SVLSM")){
 }
 
 $(function(){
-    console.log("jQuery is working...");
     var url = "http://localhost:8000/api/";
 
     //Eventos

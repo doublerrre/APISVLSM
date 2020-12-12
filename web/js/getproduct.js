@@ -27,7 +27,6 @@ $(function(){
                 Authorization: token,
             },
             success: function(response){
-                console.log(response);
                 let producto = response.data;
                 let card_product = "";
                 let card_user = "";

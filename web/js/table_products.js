@@ -95,7 +95,6 @@ $(function(){
     function getData(tbody, table){
 		$(tbody).on("click", ".getProduct", function(){
             var data = table.row($(this).parents("tr")).data();
-            console.log(data);
             $("#_id").val(data._id);
             $("#editnombre").val(data.nombre);
             $("#editstock").val(data.existencias);
@@ -148,7 +147,6 @@ $(function(){
     }
 
     function saveProducts(postData){
-        console.log(postData);
         $.ajax({
             url: url + "product",
             method: "POST",

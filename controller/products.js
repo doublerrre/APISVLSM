@@ -11,7 +11,6 @@ var Product = require("../models/products");
 
 function saveProduct(req, res){
     var params = req.body;
-    console.log(req.body, req.user.sub);
     var product = new Product();
 
     product.nombre = params.nombre;
@@ -153,7 +152,6 @@ function putProduct(req, res){
 
 function getProductByUser(req, res){
     var userId = req.user.sub;
-    console.log(userId);
     Product.find({user: {$eq: userId}}).exec((err, data) => {
         if (err) {
             return res.status(500).send({
